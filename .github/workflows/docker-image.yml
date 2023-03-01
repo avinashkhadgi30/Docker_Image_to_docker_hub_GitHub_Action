@@ -26,4 +26,4 @@ jobs:
       run: docker build .  --tag avinashkhadgi/github_action:$(date +%s)
       
     - name: Docker Push
-      run: docker push ${{secrets.DOCKER_USER}}/avinashkhadgi/github_action
+      run: docker push ${{secrets.DOCKER_USER}}/avinashkhadgi/github_action 
