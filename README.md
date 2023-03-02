@@ -1,1 +1,2 @@
-# Docker_Image_to_docker_hub_Using_GitHub_Action
+#  How to publish a docker image to Docker Hub using a GitHub Action       
+# 
