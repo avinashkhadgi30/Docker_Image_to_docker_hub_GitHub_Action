@@ -18,12 +18,11 @@ jobs:
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-      run: |
-        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+        REPO_NAME: ${{secrets.REPO_NAME}}
+      run: | # log into docker hub account
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     
-    - name: Build the Docker image
-      #run: docker build . --file Dockerfile --tag avinashkhadgi/github_action:$(date +%s)
-      run: docker build .  --tag avinashkhadgi/github_action:$(date +%s)
-      
+    - name: Build the Docker image # push The image to the docker hub
+      run: docker build . --file Dockerfile --tag $DOCKER_USER/$REPO_NAME:${{ steps.date.outputs.date }}
     - name: Docker Push
-      run: docker push ${{secrets.DOCKER_USER}}/avinashkhadgi/github_action 
+      run: docker push $DOCKER_USER/$REPO_NAME:${{ steps.date.outputs.date }}
